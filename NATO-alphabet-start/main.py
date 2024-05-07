@@ -5,15 +5,16 @@ student_dict = {
 
 #Looping through dictionaries:
 for (key, value) in student_dict.items():
-    print(value)
+    # print(value)
     pass
 
-import pandas
-student_data_frame = pandas.DataFrame(student_dict)
+import pandas as pd
+student_data_frame = pd.DataFrame(student_dict)
 
 #Loop through rows of a data frame
 for (index, row) in student_data_frame.iterrows():
     #Access index and row
+    print(row.student, row.score)
     #Access row.student or row.score
     pass
 
@@ -23,5 +24,15 @@ for (index, row) in student_data_frame.iterrows():
 #TODO 1. Create a dictionary in this format:
 {"A": "Alfa", "B": "Bravo"}
 
-#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+df = pd.read_csv('./nato_phonetic_alphabet.csv')
+print(df)
 
+phonetic_dict = {row.letter:row.code for (index,row) in df.iterrows()}
+print(phonetic_dict)
+#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+usrinput = input("Input a random word")
+usrinput = usrinput.upper()
+
+
+result = [phonetic_dict[char] for char in usrinput]
+print(result)
